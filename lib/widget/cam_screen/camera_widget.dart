@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:provider/provider.dart';
 
 // Providers
+import '../../provider/stt.dart';
 import '../../provider/tts.dart';
 import '../../provider/uploade.dart';
 
@@ -22,6 +23,8 @@ class _CameraWidgetState extends State<CameraWidget>
   void initState() {
     super.initState();
     Provider.of<TextToSpeech>(context, listen: false).initTts();
+    Provider.of<SpeechToText>(context, listen: false).initSpeechState();
+
     initCam().then((value) {
       controller = CameraController(firstCamera, ResolutionPreset.veryHigh,
           imageFormatGroup: ImageFormatGroup.jpeg);
@@ -40,9 +43,28 @@ class _CameraWidgetState extends State<CameraWidget>
   @override
   Widget build(BuildContext context) {
     return Listener(
-      onPointerDown: (event) {},
+      onPointerDown: (event) {
+        var stt = Provider.of<SpeechToText>(context, listen: false);
+        stt.start();
+      },
       onPointerUp: (event) {
-        sendClassReq();
+        var stt = Provider.of<SpeechToText>(context, listen: false);
+        stt.stop();
+        // print("lllllllllllllllllll" + stt.lastWord);
+
+        if (stt.lastWord == 'detect') {
+          sendDetectReq();
+          stt.lastWord = '';
+        } else if (stt.lastWord == 'happy') {
+          sendClassReq();
+          stt.lastWord = '';
+        } else {
+          String msg = "Please try again";
+          final msgV = Provider.of<TextToSpeech>(context, listen: false);
+          msgV.onChange(msg);
+          msgV.speak();
+          stt.lastWord = '';
+        }
       },
       child: FutureBuilder<void>(
         future: _initializeControllerFuture,
