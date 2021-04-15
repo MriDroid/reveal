@@ -16,6 +16,7 @@ class SpeechToText with ChangeNotifier {
   String lastStatus = '';
   String systemlocale = '';
   int resultListened = 0;
+  List words = [];
 
   stt.SpeechToText speech = stt.SpeechToText();
 
@@ -40,8 +41,8 @@ class SpeechToText with ChangeNotifier {
     lastError = '';
     speech.listen(
       onResult: resultListener,
-      listenFor: Duration(seconds: 5),
-      pauseFor: Duration(seconds: 5),
+      listenFor: Duration(seconds: 2),
+      pauseFor: Duration(seconds: 2),
       partialResults: true,
       localeId: systemlocale,
       onSoundLevelChange: soundLevelListener,
@@ -74,6 +75,7 @@ class SpeechToText with ChangeNotifier {
   }
 
   void resultListener(SpeechRecognitionResult result) {
+    words = [];
     ++resultListened;
     // print('Result listener $resultListened');
     final now = DateTime.now().toIso8601String();
@@ -81,6 +83,7 @@ class SpeechToText with ChangeNotifier {
     if (result.finalResult) {
       print('  no. alternates ${result.alternates.length}');
       for (final a in result.alternates) {
+        words.add(a.recognizedWords.toString());
         print('  - ${a.recognizedWords} (${a.confidence})');
       }
     }

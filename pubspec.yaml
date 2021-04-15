@@ -24,8 +24,12 @@ dependencies:
   flutter:
     sdk: flutter
   camera: ^0.8.0
+  carousel_slider: ^4.0.0-nullsafety.0
   cupertino_icons: ^1.0.2
+  flutter_exif_rotation: ^0.4.1
+  flutter_onboard: ^1.0.0
   flutter_tts: ^3.0.0
+  getwidget: ^1.2.4
   google_fonts: ^2.0.0
   http: ^0.13.1
   path_provider: ^2.0.1
@@ -37,16 +41,31 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  page_transition: ^1.1.7+6
+  # integration_test:
+  #   sdk: flutter
+  simple_animations: ^2.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - images/1.png
+    - images/2.png
+    - images/3.png
+    - images/33.png
+    - images/Reveal.png
+
+  fonts:
+    - family: RobotoSlab
+      fonts:
+        - asset: fonts/RobotoSlab-Regular.ttf
+        - asset: fonts/RobotoSlab-Bold.ttf
+        - asset: fonts/RobotoSlab-Light.ttf
+          weight: 700
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

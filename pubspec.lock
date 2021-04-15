@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0-nullsafety.0"
   characters:
     dependency: transitive
     description:
@@ -104,6 +111,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_exif_rotation:
+    dependency: "direct main"
+    description:
+      name: flutter_exif_rotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
+  flutter_onboard:
+    dependency: "direct main"
+    description:
+      name: flutter_onboard
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -121,6 +142,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  getwidget:
+    dependency: "direct main"
+    description:
+      name: getwidget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.4"
   google_fonts:
     dependency: "direct main"
     description:
@@ -177,6 +205,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  page_transition:
+    dependency: "direct dev"
+    description:
+      name: page_transition
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.7+6"
   path:
     dependency: transitive
     description:
@@ -275,6 +310,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  sa_v1_migration:
+    dependency: transitive
+    description:
+      name: sa_v1_migration
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -317,6 +359,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  simple_animations:
+    dependency: "direct dev"
+    description:
+      name: simple_animations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.5.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -371,6 +420,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  supercharged:
+    dependency: transitive
+    description:
+      name: supercharged
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.12.0"
+  supercharged_dart:
+    dependency: transitive
+    description:
+      name: supercharged_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   term_glyph:
     dependency: transitive
     description:

@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+// Screens
+import './cam_screen.dart';
+import './welcome_screen.dart';
+
 class Permissions extends StatefulWidget {
   @override
   _PermissionState createState() => _PermissionState();
@@ -20,7 +24,7 @@ class _PermissionState extends State<Permissions> {
       return new Timer(_duration, homePage);
     } else {
       //first time
-      prefs.setBool("first_time", false);
+      // prefs.setBool("first_time", false);
       askForPermissions();
       return new Timer(_duration, welpage);
     }
@@ -31,11 +35,11 @@ class _PermissionState extends State<Permissions> {
   }
 
   void homePage() {
-    Navigator.of(context).pushReplacementNamed('/CamScreen');
+    Navigator.of(context).pushReplacementNamed(CamScreen.routeName);
   }
 
   void welpage() {
-    Navigator.of(context).pushReplacementNamed('/WelcomeScreen');
+    Navigator.of(context).pushReplacementNamed(WelcomeScreen.routeName);
   }
 
   @override

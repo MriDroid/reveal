@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 
 // Providers
 import '../../provider/stt.dart';
@@ -26,8 +29,12 @@ class _CameraWidgetState extends State<CameraWidget>
     Provider.of<SpeechToText>(context, listen: false).initSpeechState();
 
     initCam().then((value) {
-      controller = CameraController(firstCamera, ResolutionPreset.veryHigh,
-          imageFormatGroup: ImageFormatGroup.jpeg);
+      controller = CameraController(
+        firstCamera,
+        ResolutionPreset.high,
+        imageFormatGroup: ImageFormatGroup.jpeg,
+        enableAudio: false,
+      );
       setState(() {
         _initializeControllerFuture = controller!.initialize();
       });
@@ -50,20 +57,21 @@ class _CameraWidgetState extends State<CameraWidget>
       onPointerUp: (event) {
         var stt = Provider.of<SpeechToText>(context, listen: false);
         stt.stop();
-        // print("lllllllllllllllllll" + stt.lastWord);
-
-        if (stt.lastWord == 'detect') {
+        List word = stt.words;
+        print('Last Word $word');
+        if (word.contains('reveal')) {
           sendDetectReq();
-          stt.lastWord = '';
-        } else if (stt.lastWord == 'happy') {
+          word = [];
+        } else if (word.contains('classify')) {
           sendClassReq();
-          stt.lastWord = '';
+          word = [];
         } else {
+          print('Please Try Again');
           String msg = "Please try again";
           final msgV = Provider.of<TextToSpeech>(context, listen: false);
           msgV.onChange(msg);
           msgV.speak();
-          stt.lastWord = '';
+          word = [];
         }
       },
       child: FutureBuilder<void>(
@@ -118,6 +126,7 @@ class _CameraWidgetState extends State<CameraWidget>
   Future<XFile?> takePicture() async {
     try {
       XFile file = await controller!.takePicture();
+      // final editFile = await FlutterExifRotation.rotateImage(path: file.path);
       return file;
     } on CameraException catch (e) {
       print(e.toString());

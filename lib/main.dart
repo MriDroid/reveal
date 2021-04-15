@@ -9,6 +9,8 @@ import './provider/stt.dart';
 
 // Screens
 import './screen/cam_screen.dart';
+import './screen/welcome_screen.dart';
+import './screen/permissions.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +28,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: CamScreen(),
+        theme: ThemeData(
+          fontFamily: 'RobotoSlab',
+          brightness: Brightness.light,
+        ),
+        home: Permissions(),
         routes: {
           CamScreen.routeName: (_) => CamScreen(),
           WelcomeScreen.routeName: (_) => WelcomeScreen(),
